@@ -9,8 +9,8 @@ export default function Footer() {
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="h-10 w-10 bg-primary rounded-md flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">US</span>
+              <div className="h-8 w-12 bg-primary rounded flex items-center justify-center">
+                <span className="text-primary-foreground font-bold text-sm">USAS</span>
               </div>
               <div>
                 <h3 className="text-lg font-bold text-foreground">United States Air Supply</h3>

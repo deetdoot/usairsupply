@@ -43,11 +43,9 @@ export default function Header() {
           <div className="flex items-center">
             <Link href="/">
               <div className="flex items-center space-x-3" data-testid="link-home">
-                <img 
-                  src="/attached_assets/USAS logo transparent final_1758353346002.PNG" 
-                  alt="United States Air Supply Logo"
-                  className="h-12 w-auto"
-                />
+                <div className="h-10 w-16 bg-primary rounded flex items-center justify-center">
+                  <span className="text-primary-foreground font-bold text-lg">USAS</span>
+                </div>
                 <div>
                   <h1 className="text-xl font-bold text-foreground">United States Air Supply</h1>
                   <p className="text-sm text-muted-foreground">Professional HVAC Solutions</p>
