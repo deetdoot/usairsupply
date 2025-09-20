@@ -1,0 +1,360 @@
+import { useState } from "react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import ProductCard from "@/components/ProductCard";
+import ProductFilter, { type FilterOptions } from "@/components/ProductFilter";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { Search, Grid, List, Filter } from "lucide-react";
+import type { Product } from "@shared/schema";
+
+export default function Products() {
+  //todo: remove mock functionality
+  const mockProducts: Product[] = [
+    {
+      id: "1",
+      name: "Carrier 24ACC636A003 Performance Series Central Air Conditioner",
+      category: "Air Conditioning",
+      brand: "Carrier",
+      model: "24ACC636A003",
+      price: "3299.99",
+      btu: 36000,
+      energyRating: "16 SEER",
+      features: ["Variable-speed compressor", "Smart thermostat compatible", "Quiet operation", "10-year warranty"],
+      description: "High-efficiency central air conditioning system with advanced variable-speed technology.",
+      imageUrl: null,
+      inStock: "in_stock"
+    },
+    {
+      id: "2", 
+      name: "Trane XV20i TruComfort Variable Speed Heat Pump",
+      category: "Heat Pumps",
+      brand: "Trane",
+      model: "XV20i",
+      price: "4599.99",
+      btu: 48000,
+      energyRating: "20 SEER",
+      features: ["Variable speed technology", "TruComfort technology", "All-weather operation", "12-year warranty"],
+      description: "Premium variable speed heat pump with industry-leading efficiency and comfort control.",
+      imageUrl: null,
+      inStock: "in_stock"
+    },
+    {
+      id: "3",
+      name: "Lennox EL296V High-Efficiency Gas Furnace",
+      category: "Heating", 
+      brand: "Lennox",
+      model: "EL296V",
+      price: "2899.99",
+      btu: 80000,
+      energyRating: "96% AFUE",
+      features: ["96% efficiency rating", "Variable-speed blower", "Two-stage heating", "20-year warranty"],
+      description: "Ultra-high efficiency gas furnace with two-stage heating and variable-speed comfort.",
+      imageUrl: null,
+      inStock: "low_stock"
+    },
+    {
+      id: "4",
+      name: "Goodman GSX14 Central Air Conditioner",
+      category: "Air Conditioning",
+      brand: "Goodman", 
+      model: "GSX14",
+      price: "2299.99",
+      btu: 24000,
+      energyRating: "14 SEER",
+      features: ["Single-stage cooling", "R-410A refrigerant", "Durable construction", "10-year warranty"],
+      description: "Reliable and affordable central air conditioning for budget-conscious homeowners.",
+      imageUrl: null,
+      inStock: "in_stock"
+    },
+    {
+      id: "5",
+      name: "Rheem Classic Plus Series Single Stage Heat Pump",
+      category: "Heat Pumps",
+      brand: "Rheem",
+      model: "RP1424AJ1NA",
+      price: "2799.99", 
+      btu: 24000,
+      energyRating: "14 SEER",
+      features: ["Single-stage operation", "Scroll compressor", "Refrigerant R-410A", "10-year warranty"],
+      description: "Dependable heat pump solution for year-round comfort and energy savings.",
+      imageUrl: null,
+      inStock: "in_stock"
+    },
+    {
+      id: "6",
+      name: "York YXV 20 SEER Variable Capacity Air Conditioner",
+      category: "Air Conditioning",
+      brand: "York",
+      model: "YXV",
+      price: "3899.99",
+      btu: 36000, 
+      energyRating: "20 SEER",
+      features: ["Variable capacity", "Inverter technology", "Smart home ready", "12-year warranty"],
+      description: "Premium variable capacity air conditioner with smart home integration capabilities.",
+      imageUrl: null,
+      inStock: "out_of_stock"
+    }
+  ];
+
+  const [products] = useState<Product[]>(mockProducts);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>(mockProducts);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState("name");
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
+
+  const [filters, setFilters] = useState<FilterOptions>({
+    search: "",
+    categories: [],
+    brands: [],
+    priceRange: { min: 0, max: 50000 },
+    btuRange: { min: 0, max: 100000 },
+    energyRating: [],
+    inStock: false
+  });
+
+  const handleFiltersChange = (newFilters: FilterOptions) => {
+    setFilters(newFilters);
+    applyFilters(newFilters, searchTerm, sortBy);
+  };
+
+  const handleClearFilters = () => {
+    const clearedFilters: FilterOptions = {
+      search: "",
+      categories: [],
+      brands: [],
+      priceRange: { min: 0, max: 50000 },
+      btuRange: { min: 0, max: 100000 },
+      energyRating: [],
+      inStock: false
+    };
+    setFilters(clearedFilters);
+    setSearchTerm("");
+    applyFilters(clearedFilters, "", sortBy);
+  };
+
+  const applyFilters = (currentFilters: FilterOptions, search: string, sort: string) => {
+    let filtered = [...products];
+
+    // Apply search
+    if (search) {
+      filtered = filtered.filter(product => 
+        product.name.toLowerCase().includes(search.toLowerCase()) ||
+        product.brand.toLowerCase().includes(search.toLowerCase()) ||
+        product.model.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    // Apply filter search
+    if (currentFilters.search) {
+      filtered = filtered.filter(product => 
+        product.name.toLowerCase().includes(currentFilters.search.toLowerCase()) ||
+        product.brand.toLowerCase().includes(currentFilters.search.toLowerCase()) ||
+        product.model.toLowerCase().includes(currentFilters.search.toLowerCase())
+      );
+    }
+
+    // Apply category filter
+    if (currentFilters.categories.length > 0) {
+      filtered = filtered.filter(product => currentFilters.categories.includes(product.category));
+    }
+
+    // Apply brand filter
+    if (currentFilters.brands.length > 0) {
+      filtered = filtered.filter(product => currentFilters.brands.includes(product.brand));
+    }
+
+    // Apply price range filter
+    filtered = filtered.filter(product => {
+      if (!product.price) return true;
+      const price = parseFloat(product.price);
+      return price >= currentFilters.priceRange.min && price <= currentFilters.priceRange.max;
+    });
+
+    // Apply BTU range filter
+    filtered = filtered.filter(product => {
+      if (!product.btu) return true;
+      return product.btu >= currentFilters.btuRange.min && product.btu <= currentFilters.btuRange.max;
+    });
+
+    // Apply energy rating filter
+    if (currentFilters.energyRating.length > 0) {
+      filtered = filtered.filter(product => 
+        product.energyRating && currentFilters.energyRating.includes(product.energyRating)
+      );
+    }
+
+    // Apply in stock filter
+    if (currentFilters.inStock) {
+      filtered = filtered.filter(product => product.inStock === "in_stock");
+    }
+
+    // Apply sorting
+    filtered.sort((a, b) => {
+      switch (sort) {
+        case "price-low":
+          return (parseFloat(a.price || "0")) - (parseFloat(b.price || "0"));
+        case "price-high":
+          return (parseFloat(b.price || "0")) - (parseFloat(a.price || "0"));
+        case "btu":
+          return (b.btu || 0) - (a.btu || 0);
+        case "brand":
+          return a.brand.localeCompare(b.brand);
+        default:
+          return a.name.localeCompare(b.name);
+      }
+    });
+
+    setFilteredProducts(filtered);
+  };
+
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+    applyFilters(filters, value, sortBy);
+  };
+
+  const handleSortChange = (value: string) => {
+    setSortBy(value);
+    applyFilters(filters, searchTerm, value);
+  };
+
+  const handleQuoteRequest = (product: Product) => {
+    console.log('Quote requested for product:', product.name);
+    // In real app, this would navigate to quote form with product pre-filled
+  };
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Header />
+      
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Page Header */}
+        <div className="mb-8">
+          <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+            HVAC Products & Equipment
+          </h1>
+          <p className="text-xl text-muted-foreground">
+            Explore our comprehensive selection of high-quality HVAC equipment from top manufacturers.
+          </p>
+        </div>
+
+        {/* Search and Controls */}
+        <div className="mb-6 space-y-4">
+          <div className="flex flex-col lg:flex-row gap-4">
+            {/* Search Bar */}
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Search products by name, brand, or model..."
+                value={searchTerm}
+                onChange={(e) => handleSearchChange(e.target.value)}
+                className="pl-10"
+                data-testid="input-product-search"
+              />
+            </div>
+            
+            {/* Sort and View Controls */}
+            <div className="flex gap-2">
+              <Select value={sortBy} onValueChange={handleSortChange}>
+                <SelectTrigger className="w-48" data-testid="select-sort">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="name">Sort by Name</SelectItem>
+                  <SelectItem value="price-low">Price: Low to High</SelectItem>
+                  <SelectItem value="price-high">Price: High to Low</SelectItem>
+                  <SelectItem value="btu">BTU Rating</SelectItem>
+                  <SelectItem value="brand">Brand</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <div className="flex border rounded-md">
+                <Button
+                  variant={viewMode === "grid" ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setViewMode("grid")}
+                  data-testid="button-view-grid"
+                >
+                  <Grid className="h-4 w-4" />
+                </Button>
+                <Button
+                  variant={viewMode === "list" ? "default" : "ghost"}
+                  size="sm"
+                  onClick={() => setViewMode("list")}
+                  data-testid="button-view-list"
+                >
+                  <List className="h-4 w-4" />
+                </Button>
+              </div>
+
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowMobileFilters(!showMobileFilters)}
+                className="lg:hidden"
+                data-testid="button-mobile-filters"
+              >
+                <Filter className="h-4 w-4 mr-2" />
+                Filters
+              </Button>
+            </div>
+          </div>
+
+          {/* Results Count */}
+          <div className="flex justify-between items-center">
+            <p className="text-sm text-muted-foreground" data-testid="text-results-count">
+              Showing {filteredProducts.length} of {products.length} products
+            </p>
+          </div>
+        </div>
+
+        <div className="flex gap-8">
+          {/* Sidebar Filters - Desktop */}
+          <aside className={`w-80 flex-shrink-0 ${showMobileFilters ? 'block' : 'hidden'} lg:block`}>
+            <ProductFilter
+              filters={filters}
+              onFiltersChange={handleFiltersChange}
+              onClearFilters={handleClearFilters}
+            />
+          </aside>
+
+          {/* Products Grid/List */}
+          <div className="flex-1">
+            {filteredProducts.length === 0 ? (
+              <Card>
+                <CardContent className="py-16 text-center">
+                  <h3 className="text-lg font-semibold text-foreground mb-2">No products found</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Try adjusting your search criteria or filters to find more products.
+                  </p>
+                  <Button onClick={handleClearFilters} data-testid="button-clear-all-filters">
+                    Clear All Filters
+                  </Button>
+                </CardContent>
+              </Card>
+            ) : (
+              <div className={
+                viewMode === "grid" 
+                  ? "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
+                  : "space-y-4"
+              }>
+                {filteredProducts.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    onQuoteRequest={handleQuoteRequest}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
