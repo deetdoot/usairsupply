@@ -42,10 +42,12 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link href="/">
-              <div className="flex items-center space-x-2" data-testid="link-home">
-                <div className="h-10 w-10 bg-primary rounded-md flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold text-lg">US</span>
-                </div>
+              <div className="flex items-center space-x-3" data-testid="link-home">
+                <img 
+                  src="/attached_assets/USAS logo transparent final_1758353346002.PNG" 
+                  alt="United States Air Supply Logo"
+                  className="h-12 w-auto"
+                />
                 <div>
                   <h1 className="text-xl font-bold text-foreground">United States Air Supply</h1>
                   <p className="text-sm text-muted-foreground">Professional HVAC Solutions</p>

@@ -299,7 +299,7 @@ export default function QuoteForm({ onSubmit }: QuoteFormProps) {
                   <FormItem>
                     <FormLabel>Preferred Contact Time</FormLabel>
                     <FormControl>
-                      <Select onValueChange={field.onChange} value={field.value}>
+                      <Select onValueChange={field.onChange} value={field.value || ""}>
                         <SelectTrigger data-testid="select-contact-time">
                           <SelectValue placeholder="Select preferred contact time" />
                         </SelectTrigger>
