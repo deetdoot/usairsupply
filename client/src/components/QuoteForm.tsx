@@ -10,20 +10,25 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { CheckCircle, Phone, Mail, MapPin } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { CheckCircle, Phone, Mail, MapPin, X, Package } from "lucide-react";
 import { z } from "zod";
+import type { Product } from "@shared/schema";
 
 const quoteFormSchema = insertQuoteRequestSchema.extend({
   squareFootage: z.number().min(1, "Square footage is required").optional().or(z.literal("")),
 });
 
 type QuoteFormValues = z.infer<typeof quoteFormSchema>;
+type SelectedProduct = Pick<Product, 'id' | 'name' | 'brand' | 'model' | 'price' | 'category' | 'btu' | 'energyRating'>;
 
 interface QuoteFormProps {
   onSubmit?: (data: QuoteFormValues) => void;
+  selectedProducts?: SelectedProduct[];
+  onRemoveProduct?: (productId: string) => void;
 }
 
-export default function QuoteForm({ onSubmit }: QuoteFormProps) {
+export default function QuoteForm({ onSubmit, selectedProducts = [], onRemoveProduct }: QuoteFormProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const form = useForm<QuoteFormValues>({
@@ -44,9 +49,13 @@ export default function QuoteForm({ onSubmit }: QuoteFormProps) {
   });
 
   const handleSubmit = (data: QuoteFormValues) => {
-    console.log("Quote form submitted:", data);
+    const submitData = {
+      ...data,
+      selectedProducts: selectedProducts
+    };
+    console.log("Quote form submitted:", submitData);
     setIsSubmitted(true);
-    onSubmit?.(data);
+    onSubmit?.(submitData);
   };
 
   if (isSubmitted) {
@@ -97,6 +106,72 @@ export default function QuoteForm({ onSubmit }: QuoteFormProps) {
         </CardDescription>
       </CardHeader>
       <CardContent>
+        {/* Selected Products Section */}
+        {selectedProducts.length > 0 && (
+          <div className="space-y-4 mb-6 p-4 bg-muted/50 rounded-lg">
+            <div className="flex items-center space-x-2">
+              <Package className="h-5 w-5 text-primary" />
+              <h3 className="text-lg font-semibold text-foreground">Selected Products</h3>
+            </div>
+            <div className="space-y-3">
+              {selectedProducts.map((product) => (
+                <div key={product.id} className="flex items-center justify-between bg-background p-3 rounded border">
+                  <div className="flex-1">
+                    <h4 className="font-medium text-foreground" data-testid={`text-selected-product-${product.id}`}>
+                      {product.name}
+                    </h4>
+                    <div className="flex items-center space-x-4 text-sm text-muted-foreground">
+                      <span>{product.brand} • {product.model}</span>
+                      {product.price && (
+                        <span className="font-medium text-primary">
+                          ${parseFloat(product.price).toLocaleString()}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex items-center space-x-2 mt-1">
+                      <Badge variant="secondary" className="text-xs">
+                        {product.category}
+                      </Badge>
+                      {product.btu && (
+                        <Badge variant="outline" className="text-xs">
+                          {product.btu.toLocaleString()} BTU
+                        </Badge>
+                      )}
+                      {product.energyRating && (
+                        <Badge variant="outline" className="text-xs">
+                          {product.energyRating}
+                        </Badge>
+                      )}
+                    </div>
+                  </div>
+                  {onRemoveProduct && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => onRemoveProduct(product.id)}
+                      className="ml-2 h-8 w-8 p-0"
+                      data-testid={`button-remove-product-${product.id}`}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  )}
+                </div>
+              ))}
+            </div>
+            <p className="text-sm text-muted-foreground">
+              You can add more products to your quote by browsing our <a href="/products" className="text-primary hover:underline">product catalog</a>.
+            </p>
+          </div>
+        )}
+        
+        {selectedProducts.length === 0 && (
+          <div className="mb-6 p-4 bg-muted/30 rounded-lg text-center">
+            <Package className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
+            <p className="text-sm text-muted-foreground">
+              No products selected yet. Browse our <a href="/products" className="text-primary hover:underline">product catalog</a> to add HVAC equipment to your quote.
+            </p>
+          </div>
+        )}
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
             {/* Contact Information */}

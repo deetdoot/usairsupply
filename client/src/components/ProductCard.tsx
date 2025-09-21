@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Star, Snowflake, Zap } from "lucide-react";
+import { useLocation } from "wouter";
 import type { Product } from "@shared/schema";
 
 interface ProductCardProps {
@@ -10,9 +11,24 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, onQuoteRequest }: ProductCardProps) {
+  const [, setLocation] = useLocation();
+  
   const handleQuoteClick = () => {
     console.log('Quote requested for product:', product.name);
     onQuoteRequest?.(product);
+    
+    // Navigate to quote page with product data
+    const productData = encodeURIComponent(JSON.stringify({
+      id: product.id,
+      name: product.name,
+      brand: product.brand,
+      model: product.model,
+      price: product.price,
+      category: product.category,
+      btu: product.btu,
+      energyRating: product.energyRating
+    }));
+    setLocation(`/quote?product=${productData}`);
   };
 
   const getStockColor = (stock: string) => {

@@ -1,11 +1,41 @@
+import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import QuoteForm from "@/components/QuoteForm";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Phone, Mail, MapPin, Clock, Shield, Award, CheckCircle } from "lucide-react";
+import type { Product } from "@shared/schema";
+
+type SelectedProduct = Pick<Product, 'id' | 'name' | 'brand' | 'model' | 'price' | 'category' | 'btu' | 'energyRating'>;
 
 export default function Quote() {
+  const [location] = useLocation();
+  const [selectedProducts, setSelectedProducts] = useState<SelectedProduct[]>([]);
+  
+  // Parse product data from URL parameters
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productParam = urlParams.get('product');
+    
+    if (productParam) {
+      try {
+        const productData: SelectedProduct = JSON.parse(decodeURIComponent(productParam));
+        // Check if product is already in the list
+        setSelectedProducts(prev => {
+          const exists = prev.some(p => p.id === productData.id);
+          if (!exists) {
+            return [...prev, productData];
+          }
+          return prev;
+        });
+      } catch (error) {
+        console.error('Error parsing product data:', error);
+      }
+    }
+  }, [location]);
+
   const benefits = [
     {
       icon: Shield,
@@ -54,7 +84,12 @@ export default function Quote() {
 
   const handleQuoteSubmit = (data: any) => {
     console.log('Quote request submitted:', data);
-    // In real app, this would send data to backend
+    console.log('Selected products:', selectedProducts);
+    // In real app, this would send data to backend with selected products
+  };
+
+  const removeProduct = (productId: string) => {
+    setSelectedProducts(prev => prev.filter(p => p.id !== productId));
   };
 
   return (
@@ -93,7 +128,11 @@ export default function Quote() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Quote Form */}
             <div className="lg:col-span-2">
-              <QuoteForm onSubmit={handleQuoteSubmit} />
+              <QuoteForm 
+                onSubmit={handleQuoteSubmit} 
+                selectedProducts={selectedProducts}
+                onRemoveProduct={removeProduct}
+              />
             </div>
 
             {/* Sidebar Information */}
