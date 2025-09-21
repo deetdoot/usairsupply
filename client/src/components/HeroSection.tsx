@@ -25,7 +25,7 @@ export default function HeroSection() {
             <h1 className="text-4xl lg:text-6xl font-bold text-foreground mb-6">
               Bulk A/C Units for Your Business
             </h1>
-            <p className="text-xl text-muted-foreground mb-8">
+            <p className="text-xl text-foreground/90 mb-8 font-medium">
               Direct importer and bulk supplier of commercial air conditioning units. 
               Serving contractors, distributors, and large-scale commercial projects with competitive wholesale pricing.
             </p>
@@ -37,7 +37,7 @@ export default function HeroSection() {
                 </Button>
               </Link>
               <Link href="/products">
-                <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-white text-foreground hover:bg-white/20" data-testid="button-hero-products">
+                <Button size="lg" variant="outline" className="bg-white border-white text-black hover:bg-white/90 hover:text-black font-semibold" data-testid="button-hero-products">
                   View Inventory
                 </Button>
               </Link>
@@ -47,7 +47,7 @@ export default function HeroSection() {
               {features.map((feature, index) => (
                 <div key={index} className="flex items-center space-x-2">
                   <feature.icon className="h-5 w-5 text-primary" />
-                  <span className="text-sm font-medium text-foreground" data-testid={`text-feature-${index}`}>
+                  <span className="text-sm font-semibold text-foreground" data-testid={`text-feature-${index}`}>
                     {feature.text}
                   </span>
                 </div>

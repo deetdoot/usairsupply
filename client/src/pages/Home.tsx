@@ -90,29 +90,29 @@ export default function Home() {
                   <div className="flex items-start space-x-4">
                     <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="font-semibold text-foreground">Direct Import Pricing</h3>
-                      <p className="text-muted-foreground">Factory-direct relationships with manufacturers ensure the most competitive wholesale pricing in the market.</p>
+                      <h3 className="font-bold text-foreground">Direct Import Pricing</h3>
+                      <p className="text-foreground/80">Factory-direct relationships with manufacturers ensure the most competitive wholesale pricing in the market.</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
                     <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="font-semibold text-foreground">20+ Years Import Experience</h3>
-                      <p className="text-muted-foreground">Two decades of expertise in commercial HVAC importing and distribution, serving businesses nationwide.</p>
+                      <h3 className="font-bold text-foreground">20+ Years Import Experience</h3>
+                      <p className="text-foreground/80">Two decades of expertise in commercial HVAC importing and distribution, serving businesses nationwide.</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
                     <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="font-semibold text-foreground">Fast Bulk Fulfillment</h3>
-                      <p className="text-muted-foreground">Extensive warehouse inventory and efficient logistics for rapid order fulfillment and delivery.</p>
+                      <h3 className="font-bold text-foreground">Fast Bulk Fulfillment</h3>
+                      <p className="text-foreground/80">Extensive warehouse inventory and efficient logistics for rapid order fulfillment and delivery.</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
                     <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="font-semibold text-foreground">Quality Assurance</h3>
-                      <p className="text-muted-foreground">All units undergo rigorous quality control and meet industry certifications and standards.</p>
+                      <h3 className="font-bold text-foreground">Quality Assurance</h3>
+                      <p className="text-foreground/80">All units undergo rigorous quality control and meet industry certifications and standards.</p>
                     </div>
                   </div>
                 </div>
