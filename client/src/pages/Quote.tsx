@@ -14,24 +14,40 @@ export default function Quote() {
   const [location] = useLocation();
   const [selectedProducts, setSelectedProducts] = useState<SelectedProduct[]>([]);
   
-  // Parse product data from URL parameters
+  // Load selected products from localStorage
   useEffect(() => {
+    const loadStoredProducts = () => {
+      try {
+        const storedProducts = JSON.parse(localStorage.getItem('selectedProducts') || '[]');
+        setSelectedProducts(storedProducts);
+        console.log('Loaded products from storage:', storedProducts.length);
+      } catch (error) {
+        console.error('Error loading stored products:', error);
+        setSelectedProducts([]);
+      }
+    };
+
+    loadStoredProducts();
+
+    // Also check for URL parameters (backward compatibility)
     const urlParams = new URLSearchParams(window.location.search);
     const productParam = urlParams.get('product');
     
     if (productParam) {
       try {
         const productData: SelectedProduct = JSON.parse(decodeURIComponent(productParam));
-        // Check if product is already in the list
-        setSelectedProducts(prev => {
-          const exists = prev.some(p => p.id === productData.id);
-          if (!exists) {
-            return [...prev, productData];
-          }
-          return prev;
-        });
+        
+        // Get current stored products
+        const storedProducts = JSON.parse(localStorage.getItem('selectedProducts') || '[]');
+        const exists = storedProducts.some((p: any) => p.id === productData.id);
+        
+        if (!exists) {
+          const updatedProducts = [...storedProducts, productData];
+          localStorage.setItem('selectedProducts', JSON.stringify(updatedProducts));
+          setSelectedProducts(updatedProducts);
+        }
       } catch (error) {
-        console.error('Error parsing product data:', error);
+        console.error('Error parsing product data from URL:', error);
       }
     }
   }, [location]);
@@ -89,7 +105,10 @@ export default function Quote() {
   };
 
   const removeProduct = (productId: string) => {
-    setSelectedProducts(prev => prev.filter(p => p.id !== productId));
+    const updatedProducts = selectedProducts.filter(p => p.id !== productId);
+    setSelectedProducts(updatedProducts);
+    localStorage.setItem('selectedProducts', JSON.stringify(updatedProducts));
+    console.log('Removed product from quote. Remaining products:', updatedProducts.length);
   };
 
   return (

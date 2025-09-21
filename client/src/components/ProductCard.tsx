@@ -17,8 +17,8 @@ export default function ProductCard({ product, onQuoteRequest }: ProductCardProp
     console.log('Quote requested for product:', product.name);
     onQuoteRequest?.(product);
     
-    // Navigate to quote page with product data
-    const productData = encodeURIComponent(JSON.stringify({
+    // Add product to localStorage for persistent multi-product selection
+    const productData = {
       id: product.id,
       name: product.name,
       brand: product.brand,
@@ -27,8 +27,25 @@ export default function ProductCard({ product, onQuoteRequest }: ProductCardProp
       category: product.category,
       btu: product.btu,
       energyRating: product.energyRating
-    }));
-    setLocation(`/quote?product=${productData}`);
+    };
+
+    // Get existing products from localStorage
+    const existingProducts = JSON.parse(localStorage.getItem('selectedProducts') || '[]');
+    
+    // Check if product is already in the list
+    const exists = existingProducts.some((p: any) => p.id === productData.id);
+    
+    if (!exists) {
+      // Add new product to the list
+      const updatedProducts = [...existingProducts, productData];
+      localStorage.setItem('selectedProducts', JSON.stringify(updatedProducts));
+      console.log('Added product to quote. Total products:', updatedProducts.length);
+    } else {
+      console.log('Product already in quote');
+    }
+    
+    // Navigate to quote page
+    setLocation('/quote');
   };
 
   const getStockColor = (stock: string) => {

@@ -54,6 +54,10 @@ export default function QuoteForm({ onSubmit, selectedProducts = [], onRemovePro
       selectedProducts: selectedProducts
     };
     console.log("Quote form submitted:", submitData);
+    
+    // Clear selected products from localStorage after successful submission
+    localStorage.removeItem('selectedProducts');
+    
     setIsSubmitted(true);
     onSubmit?.(submitData);
   };
