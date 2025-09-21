@@ -1,14 +1,14 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Shield, Clock, Award } from "lucide-react";
-import heroImage from "@assets/generated_images/HVAC_technician_installing_AC_unit_89e864a4.png";
+import heroImage from "@assets/generated_images/Industrial_HVAC_warehouse_inventory_d0a55365.png";
 
 export default function HeroSection() {
   const features = [
-    { icon: Shield, text: "Licensed & Insured" },
-    { icon: Clock, text: "24/7 Emergency Service" },
-    { icon: Award, text: "20+ Years Experience" },
-    { icon: CheckCircle, text: "Satisfaction Guaranteed" },
+    { icon: Shield, text: "Certified Importers" },
+    { icon: Clock, text: "Fast Bulk Delivery" },
+    { icon: Award, text: "20+ Years Industry Experience" },
+    { icon: CheckCircle, text: "Wholesale Pricing" },
   ];
 
   return (
@@ -23,22 +23,22 @@ export default function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-4xl lg:text-6xl font-bold text-foreground mb-6">
-              Professional HVAC Services You Can Trust
+              Bulk A/C Units for Your Business
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
-              Expert installation, repair, and maintenance for all your heating and cooling needs. 
-              Serving residential and commercial properties with reliable, efficient solutions.
+              Direct importer and bulk supplier of commercial air conditioning units. 
+              Serving contractors, distributors, and large-scale commercial projects with competitive wholesale pricing.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <Link href="/quote">
                 <Button size="lg" className="bg-primary hover:bg-primary/90" data-testid="button-hero-quote">
-                  Get Free Quote
+                  Request Wholesale Quote
                 </Button>
               </Link>
               <Link href="/products">
                 <Button size="lg" variant="outline" className="bg-white/10 backdrop-blur-sm border-white text-foreground hover:bg-white/20" data-testid="button-hero-products">
-                  Browse Products
+                  View Inventory
                 </Button>
               </Link>
             </div>
@@ -59,7 +59,7 @@ export default function HeroSection() {
             <div className="relative">
               <img 
                 src={heroImage} 
-                alt="Professional HVAC technician installing air conditioning unit"
+                alt="Industrial warehouse with bulk inventory of commercial AC units"
                 className="w-full h-auto rounded-lg shadow-xl"
                 data-testid="img-hero"
               />

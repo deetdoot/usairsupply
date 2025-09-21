@@ -2,52 +2,52 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { 
-  Wrench, 
-  Settings, 
-  Snowflake, 
-  Flame, 
-  Shield, 
-  Clock,
+  Truck, 
+  Package, 
+  Building2, 
+  Users, 
+  Globe, 
+  Zap,
   ArrowRight 
 } from "lucide-react";
 
 export default function ServicesSection() {
   const services = [
     {
-      icon: Settings,
-      title: "HVAC Installation",
-      description: "Professional installation of new heating and cooling systems with warranty and ongoing support.",
-      features: ["New system design", "Professional installation", "System commissioning", "Warranty included"]
+      icon: Package,
+      title: "Bulk Equipment Supply",
+      description: "Large-scale commercial AC units imported directly from manufacturers for wholesale distribution.",
+      features: ["Volume discounts", "Bulk inventory", "Multiple brands", "Commercial-grade units"]
     },
     {
-      icon: Wrench,
-      title: "Repair & Maintenance",
-      description: "Expert repair services and preventive maintenance to keep your HVAC system running efficiently.",
-      features: ["Emergency repairs", "Preventive maintenance", "System tune-ups", "Parts replacement"]
+      icon: Truck,
+      title: "Logistics & Delivery",
+      description: "Efficient shipping and delivery solutions for large orders with reliable freight partnerships.",
+      features: ["Freight coordination", "Scheduled deliveries", "Warehouse pickup", "Nationwide shipping"]
     },
     {
-      icon: Snowflake,
-      title: "Air Conditioning",
-      description: "Complete AC services including installation, repair, and maintenance for optimal cooling comfort.",
-      features: ["AC installation", "Refrigerant service", "Duct cleaning", "Energy efficiency upgrades"]
+      icon: Building2,
+      title: "Project Supply",
+      description: "Complete equipment supply for large commercial projects, construction, and development.",
+      features: ["Project consultation", "Specification matching", "Timeline coordination", "Volume pricing"]
     },
     {
-      icon: Flame,
-      title: "Heating Systems",
-      description: "Comprehensive heating solutions from furnace installation to heat pump services and repairs.",
-      features: ["Furnace installation", "Heat pump service", "Boiler maintenance", "Heating repairs"]
+      icon: Users,
+      title: "Contractor Partnerships",
+      description: "Dedicated support and competitive pricing for HVAC contractors and installation companies.",
+      features: ["Contractor rates", "Credit terms", "Technical support", "Priority ordering"]
     },
     {
-      icon: Shield,
-      title: "Commercial HVAC",
-      description: "Specialized commercial HVAC services for businesses, offices, and industrial facilities.",
-      features: ["Commercial installation", "System design", "Maintenance contracts", "Emergency service"]
+      icon: Globe,
+      title: "Import & Distribution",
+      description: "Direct import relationships with leading manufacturers ensuring quality and competitive pricing.",
+      features: ["Factory direct", "Quality assurance", "Certification compliance", "Import documentation"]
     },
     {
-      icon: Clock,
-      title: "Emergency Service",
-      description: "24/7 emergency HVAC services when you need immediate assistance with your heating or cooling.",
-      features: ["24/7 availability", "Rapid response", "Emergency repairs", "Holiday service"]
+      icon: Zap,
+      title: "Fast Fulfillment",
+      description: "Quick turnaround on orders with extensive warehouse inventory and expedited processing.",
+      features: ["Same-day processing", "Express shipping", "Inventory alerts", "Order tracking"]
     }
   ];
 
@@ -56,11 +56,11 @@ export default function ServicesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-            Complete HVAC Services
+            Wholesale AC Distribution Services
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            From installation to emergency repairs, we provide comprehensive HVAC solutions 
-            for residential and commercial properties.
+            From bulk equipment supply to project fulfillment, we provide comprehensive wholesale solutions 
+            for contractors, distributors, and commercial projects.
           </p>
         </div>
 
@@ -91,7 +91,7 @@ export default function ServicesSection() {
                 </ul>
                 <Link href="/quote">
                   <Button variant="outline" size="sm" className="w-full" data-testid={`button-service-quote-${index}`}>
-                    Get Quote
+                    Request Quote
                   </Button>
                 </Link>
               </CardContent>
@@ -100,9 +100,9 @@ export default function ServicesSection() {
         </div>
 
         <div className="text-center mt-12">
-          <Link href="/services">
+          <Link href="/products">
             <Button size="lg" data-testid="button-view-all-services">
-              View All Services
+              View Full Catalog
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>

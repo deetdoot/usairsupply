@@ -15,34 +15,34 @@ import {
   ArrowRight,
   Star
 } from "lucide-react";
-import commercialImage from "@assets/generated_images/Commercial_HVAC_service_team_c3dbda7c.png";
+import commercialImage from "@assets/generated_images/Industrial_HVAC_warehouse_inventory_d0a55365.png";
 
 export default function Home() {
   const stats = [
-    { icon: Users, number: "5,000+", label: "Happy Customers" },
-    { icon: Award, number: "20+", label: "Years Experience" },
-    { icon: CheckCircle, number: "24/7", label: "Emergency Service" },
-    { icon: Shield, number: "100%", label: "Licensed & Insured" },
+    { icon: Users, number: "1,000+", label: "Business Customers" },
+    { icon: Award, number: "20+", label: "Years Importing" },
+    { icon: CheckCircle, number: "50K+", label: "Units Distributed" },
+    { icon: Shield, number: "100%", label: "Quality Assured" },
   ];
 
   const testimonials = [
     {
-      name: "Sarah Johnson",
-      location: "Dallas, TX",
+      name: "David Martinez",
+      location: "ABC HVAC Contractors, Dallas TX",
       rating: 5,
-      text: "Outstanding service! They installed our new AC system efficiently and the team was professional throughout the entire process.",
+      text: "Outstanding wholesale pricing and fast delivery! We've been ordering bulk units for our commercial projects and USAS consistently delivers quality equipment on time.",
     },
     {
-      name: "Mike Chen",
-      location: "Houston, TX", 
+      name: "Jennifer Wu",
+      location: "Metro Construction Group, Houston TX", 
       rating: 5,
-      text: "Fast emergency repair when our heating went out in winter. Arrived within 2 hours and fixed everything. Highly recommend!",
+      text: "Reliable supplier for our large-scale commercial developments. They handle our project timelines perfectly and their bulk discounts save us significant costs.",
     },
     {
-      name: "Lisa Rodriguez",
-      location: "Austin, TX",
+      name: "Robert Johnson",
+      location: "Johnson Mechanical Services, Austin TX",
       rating: 5,
-      text: "Great maintenance service. They keep our commercial HVAC systems running smoothly and their prices are very competitive.",
+      text: "Excellent partner for our HVAC installation business. Their inventory is extensive and they understand contractor needs. Highly recommend for bulk purchasing.",
     },
   ];
 
@@ -90,29 +90,29 @@ export default function Home() {
                   <div className="flex items-start space-x-4">
                     <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="font-semibold text-foreground">Licensed & Insured</h3>
-                      <p className="text-muted-foreground">Fully licensed HVAC contractors with comprehensive insurance coverage for your peace of mind.</p>
+                      <h3 className="font-semibold text-foreground">Direct Import Pricing</h3>
+                      <p className="text-muted-foreground">Factory-direct relationships with manufacturers ensure the most competitive wholesale pricing in the market.</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
                     <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="font-semibold text-foreground">20+ Years Experience</h3>
-                      <p className="text-muted-foreground">Two decades of expertise in residential and commercial HVAC systems.</p>
+                      <h3 className="font-semibold text-foreground">20+ Years Import Experience</h3>
+                      <p className="text-muted-foreground">Two decades of expertise in commercial HVAC importing and distribution, serving businesses nationwide.</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
                     <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="font-semibold text-foreground">24/7 Emergency Service</h3>
-                      <p className="text-muted-foreground">Round-the-clock emergency repairs when you need them most.</p>
+                      <h3 className="font-semibold text-foreground">Fast Bulk Fulfillment</h3>
+                      <p className="text-muted-foreground">Extensive warehouse inventory and efficient logistics for rapid order fulfillment and delivery.</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
                     <CheckCircle className="h-6 w-6 text-green-500 mt-1 flex-shrink-0" />
                     <div>
-                      <h3 className="font-semibold text-foreground">Satisfaction Guarantee</h3>
-                      <p className="text-muted-foreground">We stand behind our work with a 100% satisfaction guarantee.</p>
+                      <h3 className="font-semibold text-foreground">Quality Assurance</h3>
+                      <p className="text-muted-foreground">All units undergo rigorous quality control and meet industry certifications and standards.</p>
                     </div>
                   </div>
                 </div>
@@ -120,7 +120,7 @@ export default function Home() {
               <div className="relative">
                 <img 
                   src={commercialImage} 
-                  alt="Commercial HVAC service team working on rooftop equipment"
+                  alt="Industrial warehouse with extensive inventory of commercial AC units ready for distribution"
                   className="w-full h-auto rounded-lg shadow-xl"
                   data-testid="img-commercial-team"
                 />
@@ -134,10 +134,10 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-                What Our Customers Say
+                What Our Business Partners Say
               </h2>
               <p className="text-xl text-muted-foreground">
-                Don't just take our word for it - hear from our satisfied customers
+                Don't just take our word for it - hear from contractors and businesses we serve
               </p>
             </div>
 
@@ -176,15 +176,15 @@ export default function Home() {
         <section className="py-16 bg-primary text-primary-foreground">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-              Ready to Get Started?
+              Ready to Order Bulk AC Units?
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Contact us today for a free quote on your HVAC needs
+              Contact us today for wholesale pricing and bulk order quotes
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/quote">
                 <Button size="lg" variant="secondary" data-testid="button-cta-quote">
-                  Get Free Quote
+                  Request Wholesale Quote
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
