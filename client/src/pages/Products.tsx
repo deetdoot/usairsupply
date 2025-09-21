@@ -9,6 +9,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Input } from "@/components/ui/input";
 import { Search, Grid, List, Filter } from "lucide-react";
 import type { Product } from "@shared/schema";
+import centralACImage from "@assets/generated_images/Central_AC_unit_product_2b1450d4.png";
+import heatPumpImage from "@assets/generated_images/Heat_pump_unit_product_2bc7afc9.png";
+import furnaceImage from "@assets/generated_images/Gas_furnace_unit_product_01b5caf5.png";
 
 export default function Products() {
   //todo: remove mock functionality
@@ -24,7 +27,7 @@ export default function Products() {
       energyRating: "16 SEER",
       features: ["Variable-speed compressor", "Smart thermostat compatible", "Quiet operation", "10-year warranty"],
       description: "High-efficiency central air conditioning system with advanced variable-speed technology.",
-      imageUrl: null,
+      imageUrl: centralACImage,
       inStock: "in_stock"
     },
     {
@@ -38,7 +41,7 @@ export default function Products() {
       energyRating: "20 SEER",
       features: ["Variable speed technology", "TruComfort technology", "All-weather operation", "12-year warranty"],
       description: "Premium variable speed heat pump with industry-leading efficiency and comfort control.",
-      imageUrl: null,
+      imageUrl: heatPumpImage,
       inStock: "in_stock"
     },
     {
@@ -52,7 +55,7 @@ export default function Products() {
       energyRating: "96% AFUE",
       features: ["96% efficiency rating", "Variable-speed blower", "Two-stage heating", "20-year warranty"],
       description: "Ultra-high efficiency gas furnace with two-stage heating and variable-speed comfort.",
-      imageUrl: null,
+      imageUrl: furnaceImage,
       inStock: "low_stock"
     },
     {
@@ -66,7 +69,7 @@ export default function Products() {
       energyRating: "14 SEER",
       features: ["Single-stage cooling", "R-410A refrigerant", "Durable construction", "10-year warranty"],
       description: "Reliable and affordable central air conditioning for budget-conscious homeowners.",
-      imageUrl: null,
+      imageUrl: centralACImage,
       inStock: "in_stock"
     },
     {
@@ -80,7 +83,7 @@ export default function Products() {
       energyRating: "14 SEER",
       features: ["Single-stage operation", "Scroll compressor", "Refrigerant R-410A", "10-year warranty"],
       description: "Dependable heat pump solution for year-round comfort and energy savings.",
-      imageUrl: null,
+      imageUrl: heatPumpImage,
       inStock: "in_stock"
     },
     {
@@ -94,7 +97,7 @@ export default function Products() {
       energyRating: "20 SEER",
       features: ["Variable capacity", "Inverter technology", "Smart home ready", "12-year warranty"],
       description: "Premium variable capacity air conditioner with smart home integration capabilities.",
-      imageUrl: null,
+      imageUrl: centralACImage,
       inStock: "out_of_stock"
     }
   ];

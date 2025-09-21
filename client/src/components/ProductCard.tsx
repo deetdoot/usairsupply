@@ -35,20 +35,49 @@ export default function ProductCard({ product, onQuoteRequest }: ProductCardProp
 
   return (
     <Card className="hover-elevate transition-all duration-300 h-full flex flex-col">
-      <CardHeader className="pb-3">
-        <div className="flex justify-between items-start mb-2">
-          <Badge className={getStockColor(product.inStock)} data-testid={`badge-stock-${product.id}`}>
-            {getStockText(product.inStock)}
-          </Badge>
+      {/* Product Image */}
+      {product.imageUrl && (
+        <div className="relative h-48 overflow-hidden rounded-t-lg">
+          <img
+            src={product.imageUrl}
+            alt={product.name}
+            className="w-full h-full object-cover"
+            data-testid={`img-product-${product.id}`}
+          />
+          <div className="absolute top-2 left-2">
+            <Badge className={getStockColor(product.inStock)} data-testid={`badge-stock-${product.id}`}>
+              {getStockText(product.inStock)}
+            </Badge>
+          </div>
           {product.energyRating && (
-            <div className="flex items-center">
-              <Star className="h-4 w-4 text-yellow-500 mr-1" />
-              <span className="text-sm font-medium" data-testid={`text-rating-${product.id}`}>
-                {product.energyRating}
-              </span>
+            <div className="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded px-2 py-1">
+              <div className="flex items-center">
+                <Star className="h-4 w-4 text-yellow-500 mr-1" />
+                <span className="text-sm font-medium" data-testid={`text-rating-${product.id}`}>
+                  {product.energyRating}
+                </span>
+              </div>
             </div>
           )}
         </div>
+      )}
+
+      <CardHeader className="pb-3">
+        {!product.imageUrl && (
+          <div className="flex justify-between items-start mb-2">
+            <Badge className={getStockColor(product.inStock)} data-testid={`badge-stock-${product.id}`}>
+              {getStockText(product.inStock)}
+            </Badge>
+            {product.energyRating && (
+              <div className="flex items-center">
+                <Star className="h-4 w-4 text-yellow-500 mr-1" />
+                <span className="text-sm font-medium" data-testid={`text-rating-${product.id}`}>
+                  {product.energyRating}
+                </span>
+              </div>
+            )}
+          </div>
+        )}
         
         <CardTitle className="text-lg leading-tight" data-testid={`text-product-name-${product.id}`}>
           {product.name}
