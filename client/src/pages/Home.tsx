@@ -195,7 +195,7 @@ export default function Home() {
               </Link>
               <Button size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-primary" data-testid="button-cta-call">
                 <Phone className="mr-2 h-5 w-5" />
-                Call (555) 123-4567
+                Call 800-547-3926
               </Button>
             </div>
           </div>

@@ -65,6 +65,13 @@ export default function Footer() {
                   </span>
                 </Link>
               </li>
+              <li>
+                <Link href="/privacy-policy">
+                  <span className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-link-privacy">
+                    Privacy Policy
+                  </span>
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -74,17 +81,16 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-primary" />
-                <span className="text-muted-foreground" data-testid="text-phone">(555) 123-4567</span>
+                <span className="text-muted-foreground" data-testid="text-phone">800-547-3926</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-primary" />
-                <span className="text-muted-foreground" data-testid="text-email">info@usairsupply.com</span>
+                <span className="text-muted-foreground" data-testid="text-email">support@usairsupply.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4 text-primary" />
                 <span className="text-muted-foreground" data-testid="text-address">
-                  123 HVAC Street<br />
-                  City, State 12345
+                  Texas, USA
                 </span>
               </div>
             </div>
@@ -93,7 +99,12 @@ export default function Footer() {
 
         <div className="border-t border-border mt-8 pt-8 text-center">
           <p className="text-muted-foreground text-sm">
-            © 2024 United States Air Supply. All rights reserved. Licensed & Insured.
+            © 2025 United States Air Supply. All rights reserved. Licensed & Insured.
+          </p>
+          <p className="text-muted-foreground text-xs mt-2">
+            <Link href="/privacy-policy">
+              <span className="hover:text-primary transition-colors">Privacy Policy</span>
+            </Link>
           </p>
         </div>
       </div>

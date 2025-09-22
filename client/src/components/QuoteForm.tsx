@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useForm as useFormspree, ValidationError } from '@formspree/react';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertQuoteRequestSchema } from "@shared/schema";
 import { Button } from "@/components/ui/button";
@@ -30,6 +31,9 @@ interface QuoteFormProps {
 
 export default function QuoteForm({ onSubmit, selectedProducts = [], onRemoveProduct }: QuoteFormProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  
+  // Formspree integration
+  const [state, handleFormspreeSubmit] = useFormspree("xpwyagwk");
 
   const form = useForm<QuoteFormValues>({
     resolver: zodResolver(quoteFormSchema),
@@ -48,21 +52,31 @@ export default function QuoteForm({ onSubmit, selectedProducts = [], onRemovePro
     },
   });
 
-  const handleSubmit = (data: QuoteFormValues) => {
+  const handleSubmit = async (data: QuoteFormValues) => {
     const submitData = {
       ...data,
-      selectedProducts: selectedProducts
+      selectedProducts: selectedProducts.map(p => `${p.name} (${p.brand} ${p.model}) - $${p.price}`).join(', ')
     };
+    
     console.log("Quote form submitted:", submitData);
     
-    // Clear selected products from localStorage after successful submission
-    localStorage.removeItem('selectedProducts');
-    
-    setIsSubmitted(true);
-    onSubmit?.(submitData);
+    // Submit to Formspree
+    try {
+      await handleFormspreeSubmit(submitData);
+      
+      if (state.succeeded) {
+        // Clear selected products from localStorage after successful submission
+        localStorage.removeItem('selectedProducts');
+        setIsSubmitted(true);
+        onSubmit?.(data);
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+    }
   };
 
-  if (isSubmitted) {
+  // Check if Formspree submission was successful
+  if (state.succeeded || isSubmitted) {
     return (
       <Card className="max-w-2xl mx-auto">
         <CardContent className="pt-6">
@@ -77,11 +91,11 @@ export default function QuoteForm({ onSubmit, selectedProducts = [], onRemovePro
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
               <div className="flex items-center justify-center space-x-2">
                 <Phone className="h-5 w-5 text-primary" />
-                <span className="text-sm">(555) 123-4567</span>
+                <span className="text-sm">800-547-3926</span>
               </div>
               <div className="flex items-center justify-center space-x-2">
                 <Mail className="h-5 w-5 text-primary" />
-                <span className="text-sm">info@usairsupply.com</span>
+                <span className="text-sm">support@usairsupply.com</span>
               </div>
               <div className="flex items-center justify-center space-x-2">
                 <MapPin className="h-5 w-5 text-primary" />
@@ -89,7 +103,10 @@ export default function QuoteForm({ onSubmit, selectedProducts = [], onRemovePro
               </div>
             </div>
             <Button 
-              onClick={() => setIsSubmitted(false)} 
+              onClick={() => {
+                setIsSubmitted(false);
+                form.reset();
+              }} 
               variant="outline"
               data-testid="button-submit-another"
             >
@@ -178,6 +195,15 @@ export default function QuoteForm({ onSubmit, selectedProducts = [], onRemovePro
         )}
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+            {/* Hidden field for selected products */}
+            {selectedProducts.length > 0 && (
+              <input
+                type="hidden"
+                name="selectedProducts"
+                value={selectedProducts.map(p => `${p.name} (${p.brand} ${p.model}) - $${p.price}`).join(', ')}
+              />
+            )}
+            
             {/* Contact Information */}
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-foreground">Contact Information</h3>
@@ -202,7 +228,7 @@ export default function QuoteForm({ onSubmit, selectedProducts = [], onRemovePro
                     <FormItem>
                       <FormLabel>Phone Number *</FormLabel>
                       <FormControl>
-                        <Input placeholder="(555) 123-4567" {...field} data-testid="input-phone" />
+                        <Input placeholder="800-547-3926" {...field} data-testid="input-phone" />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -424,11 +450,18 @@ export default function QuoteForm({ onSubmit, selectedProducts = [], onRemovePro
               type="submit" 
               size="lg" 
               className="w-full"
-              disabled={form.formState.isSubmitting}
+              disabled={form.formState.isSubmitting || state.submitting}
               data-testid="button-submit-quote"
             >
-              {form.formState.isSubmitting ? "Submitting..." : "Get Free Quote"}
+              {form.formState.isSubmitting || state.submitting ? "Submitting..." : "Get Free Quote"}
             </Button>
+            
+            {/* Show Formspree validation errors */}
+            <ValidationError 
+              prefix="Form" 
+              field="" 
+              errors={state.errors}
+            />
           </form>
         </Form>
       </CardContent>

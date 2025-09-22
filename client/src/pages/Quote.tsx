@@ -129,11 +129,11 @@ export default function Quote() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               <div className="flex items-center justify-center space-x-2">
                 <Phone className="h-5 w-5 text-primary" />
-                <span className="font-medium">(555) 123-4567</span>
+                <span className="font-medium">800-547-3926</span>
               </div>
               <div className="flex items-center justify-center space-x-2">
                 <Mail className="h-5 w-5 text-primary" />
-                <span className="font-medium">info@usairsupply.com</span>
+                <span className="font-medium">support@usairsupply.com</span>
               </div>
               <div className="flex items-center justify-center space-x-2">
                 <Clock className="h-5 w-5 text-primary" />
@@ -239,14 +239,14 @@ export default function Quote() {
                     <Phone className="h-5 w-5 text-primary" />
                     <div>
                       <p className="font-medium">Phone</p>
-                      <p className="text-sm text-muted-foreground">(555) 123-4567</p>
+                      <p className="text-sm text-muted-foreground">800-547-3926</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
                     <Mail className="h-5 w-5 text-primary" />
                     <div>
                       <p className="font-medium">Email</p>
-                      <p className="text-sm text-muted-foreground">info@usairsupply.com</p>
+                      <p className="text-sm text-muted-foreground">support@usairsupply.com</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-3">
@@ -254,8 +254,7 @@ export default function Quote() {
                     <div>
                       <p className="font-medium">Address</p>
                       <p className="text-sm text-muted-foreground">
-                        123 HVAC Street<br />
-                        City, State 12345
+                      Texas, USA
                       </p>
                     </div>
                   </div>

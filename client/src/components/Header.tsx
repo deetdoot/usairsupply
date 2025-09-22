@@ -24,11 +24,11 @@ export default function Header() {
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4" />
-                <span>(555) 123-4567</span>
+                <span>800-547-3926</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4" />
-                <span>info@usairsupply.com</span>
+                <span>support@usairsupply.com</span>
               </div>
             </div>
           </div>
