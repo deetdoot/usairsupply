@@ -71,7 +71,7 @@ export default function Header() {
 
           <div className="hidden md:block">
             <Link href="/quote">
-              <Button data-testid="button-get-quote">Request Wholesale Quote</Button>
+              <Button size="lg" className="px-6 py-3" data-testid="button-get-quote">Request Wholesale Quote</Button>
             </Link>
           </div>
 
