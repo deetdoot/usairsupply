@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
+import usasLogo from "@assets/USAS logo transparent final (1)_1758500444398.png";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -31,7 +32,7 @@ export default function Header() {
               </div>
             </div>
             <div className="hidden sm:block">
-              <span>Licensed & Insured • 24/7 Emergency Service</span>
+              <span>Certified Importers • Bulk Wholesale Pricing</span>
             </div>
           </div>
         </div>
@@ -43,12 +44,14 @@ export default function Header() {
           <div className="flex items-center">
             <Link href="/">
               <div className="flex items-center space-x-3" data-testid="link-home">
-                <div className="h-10 w-16 bg-primary rounded flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold text-lg">USAS</span>
-                </div>
+                <img 
+                  src={usasLogo} 
+                  alt="United States Air Supply Logo"
+                  className="h-12 w-auto"
+                />
                 <div>
                   <h1 className="text-xl font-bold text-foreground">United States Air Supply</h1>
-                  <p className="text-sm text-muted-foreground">Professional HVAC Solutions</p>
+                  <p className="text-sm text-muted-foreground">Bulk A/C Equipment Importer</p>
                 </div>
               </div>
             </Link>
@@ -76,7 +79,7 @@ export default function Header() {
 
           <div className="hidden md:block">
             <Link href="/quote">
-              <Button data-testid="button-get-quote">Get Free Quote</Button>
+              <Button data-testid="button-get-quote">Request Wholesale Quote</Button>
             </Link>
           </div>
 
@@ -115,7 +118,7 @@ export default function Header() {
               <div className="pt-4">
                 <Link href="/quote">
                   <Button className="w-full" onClick={() => setIsMobileMenuOpen(false)} data-testid="mobile-button-quote">
-                    Get Free Quote
+                    Request Wholesale Quote
                   </Button>
                 </Link>
               </div>

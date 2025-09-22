@@ -25,7 +25,7 @@ interface ProductFilterProps {
 
 export default function ProductFilter({ filters, onFiltersChange, onClearFilters }: ProductFilterProps) {
   const categories = ["Air Conditioning", "Heating", "Heat Pumps", "Ductwork", "Thermostats", "Air Quality"];
-  const brands = ["Carrier", "Trane", "Lennox", "Goodman", "Rheem", "York", "American Standard"];
+  const brands = ["Carrier", "Trane", "Lennox", "Goodman", "Rheem", "York", "American Standard", "Bestcold"];
   const energyRatings = ["13 SEER", "14 SEER", "15 SEER", "16 SEER", "18 SEER", "20+ SEER"];
 
   const updateFilters = (updates: Partial<FilterOptions>) => {
