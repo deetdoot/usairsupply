@@ -16,7 +16,6 @@ import {
   Star
 } from "lucide-react";
 import warehouseImage from "@assets/USAS warehouse_1758503174620.png";
-import semiTruckImage from "@assets/semi truck usas final_1758502681489.png";
 
 export default function Home() {
   const stats = [
@@ -51,28 +50,18 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Truck Image at Top */}
-      <div className="w-full">
-        <img 
-          src={semiTruckImage} 
-          alt="USAS delivery truck with commercial AC equipment"
-          className="w-full h-auto"
-          data-testid="img-top-truck"
-        />
-      </div>
-      
-      {/* Warehouse Image Below Truck */}
-      <div className="w-full">
-        <img 
-          src={warehouseImage} 
-          alt="USAS warehouse with organized inventory and company branding"
-          className="w-full h-auto"
-          data-testid="img-top-warehouse"
-        />
-      </div>
-      
       <main>
         <HeroSection />
+        
+        {/* Warehouse Image under Hero Section */}
+        <div className="w-full">
+          <img 
+            src={warehouseImage} 
+            alt="USAS warehouse with organized inventory and company branding"
+            className="w-full h-auto"
+            data-testid="img-warehouse"
+          />
+        </div>
         
         {/* Stats Section */}
         <section className="py-16 bg-muted/50">
