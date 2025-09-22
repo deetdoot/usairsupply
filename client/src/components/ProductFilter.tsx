@@ -21,12 +21,22 @@ interface ProductFilterProps {
   filters: FilterOptions;
   onFiltersChange: (filters: FilterOptions) => void;
   onClearFilters: () => void;
+  availableCategories: string[];
+  availableBrands: string[];
+  availableEnergyRatings: string[];
 }
 
-export default function ProductFilter({ filters, onFiltersChange, onClearFilters }: ProductFilterProps) {
-  const categories = ["Air Conditioning", "Heating", "Heat Pumps", "Ductwork", "Thermostats", "Air Quality"];
-  const brands = ["Carrier", "Trane", "Lennox", "Goodman", "Rheem", "York", "American Standard", "Bestcold"];
-  const energyRatings = ["13 SEER", "14 SEER", "15 SEER", "16 SEER", "18 SEER", "20+ SEER"];
+export default function ProductFilter({ 
+  filters, 
+  onFiltersChange, 
+  onClearFilters, 
+  availableCategories, 
+  availableBrands, 
+  availableEnergyRatings 
+}: ProductFilterProps) {
+  const categories = availableCategories;
+  const brands = availableBrands;
+  const energyRatings = availableEnergyRatings;
 
   const updateFilters = (updates: Partial<FilterOptions>) => {
     onFiltersChange({ ...filters, ...updates });

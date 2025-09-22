@@ -33,6 +33,22 @@ export default function Products() {
     inStock: false
   });
 
+  // Derive filter options from products data
+  const availableCategories = React.useMemo(() => {
+    const categories = new Set(products?.map(p => p.category) || []);
+    return Array.from(categories).sort();
+  }, [products]);
+
+  const availableBrands = React.useMemo(() => {
+    const brands = new Set(products?.map(p => p.brand) || []);
+    return Array.from(brands).sort();
+  }, [products]);
+
+  const availableEnergyRatings = React.useMemo(() => {
+    const ratings = new Set(products?.map(p => p.energyRating).filter(Boolean) || []);
+    return Array.from(ratings).sort();
+  }, [products]);
+
   // Update filtered products when products data changes
   React.useEffect(() => {
     if (products?.length > 0) {
@@ -243,6 +259,9 @@ export default function Products() {
               filters={filters}
               onFiltersChange={handleFiltersChange}
               onClearFilters={handleClearFilters}
+              availableCategories={availableCategories}
+              availableBrands={availableBrands}
+              availableEnergyRatings={availableEnergyRatings}
             />
           </aside>
 

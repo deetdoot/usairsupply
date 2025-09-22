@@ -27,45 +27,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Product creation disabled for security (no authentication implemented)
   app.post("/api/products", async (req, res) => {
-    try {
-      const productData = insertProductSchema.parse(req.body);
-      const product = await storage.createProduct(productData);
-      res.status(201).json(product);
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        return res.status(400).json({ error: "Invalid product data", details: error.errors });
-      }
-      res.status(500).json({ error: "Failed to create product" });
-    }
+    res.status(403).json({ error: "Product creation disabled - authentication required" });
   });
 
+  // Product updates disabled for security (no authentication implemented)
   app.put("/api/products/:id", async (req, res) => {
-    try {
-      const updateData = insertProductSchema.partial().parse(req.body);
-      const product = await storage.updateProduct(req.params.id, updateData);
-      if (!product) {
-        return res.status(404).json({ error: "Product not found" });
-      }
-      res.json(product);
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        return res.status(400).json({ error: "Invalid product data", details: error.errors });
-      }
-      res.status(500).json({ error: "Failed to update product" });
-    }
+    res.status(403).json({ error: "Product updates disabled - authentication required" });
   });
 
+  // Product deletion disabled for security (no authentication implemented) 
   app.delete("/api/products/:id", async (req, res) => {
-    try {
-      const success = await storage.deleteProduct(req.params.id);
-      if (!success) {
-        return res.status(404).json({ error: "Product not found" });
-      }
-      res.status(204).end();
-    } catch (error) {
-      res.status(500).json({ error: "Failed to delete product" });
-    }
+    res.status(403).json({ error: "Product deletion disabled - authentication required" });
   });
 
   const httpServer = createServer(app);

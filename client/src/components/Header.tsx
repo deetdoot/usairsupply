@@ -43,7 +43,7 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link href="/">
-              <div className="flex items-center space-x-3" data-testid="link-home">
+              <div className="flex items-center space-x-3" data-testid="link-logo">
                 <img 
                   src={usasLogo} 
                   alt="United States Air Supply Logo"
