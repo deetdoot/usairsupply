@@ -28,7 +28,7 @@ export default function HeroSection() {
               <img 
                 src={usasLogo} 
                 alt="United States Air Supply Logo"
-                className="h-32 w-auto"
+                className="h-96 w-auto"
                 data-testid="img-hero-logo"
               />
             </div>
@@ -71,7 +71,7 @@ export default function HeroSection() {
                 <img 
                   src={semiTruck} 
                   alt="USAS delivery truck with commercial AC equipment"
-                  className="w-full h-auto rounded-lg shadow-xl"
+                  className="w-1/2 h-auto rounded-lg shadow-xl mx-auto"
                   data-testid="img-hero-truck"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
