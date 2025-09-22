@@ -15,7 +15,7 @@ import {
   ArrowRight,
   Star
 } from "lucide-react";
-import commercialImage from "@assets/generated_images/Industrial_HVAC_warehouse_inventory_d0a55365.png";
+import commercialImage from "@assets/USAS warehouse_1758504725595.png";
 
 export default function Home() {
   const stats = [
@@ -120,7 +120,7 @@ export default function Home() {
               <div className="relative">
                 <img 
                   src={commercialImage} 
-                  alt="Industrial warehouse with extensive inventory of commercial AC units ready for distribution"
+                  alt="USAS warehouse facility with organized inventory and company branding"
                   className="w-full h-auto rounded-lg shadow-xl"
                   data-testid="img-commercial-team"
                 />
