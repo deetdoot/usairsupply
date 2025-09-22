@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
-import usasLogo from "@assets/USAS logo transparent final (1)_1758500444398.png";
+import usasLogo from "@assets/USAS logo transparent final (1)_1758501953578.png";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -31,9 +31,6 @@ export default function Header() {
                 <span>info@usairsupply.com</span>
               </div>
             </div>
-            <div className="hidden sm:block">
-              <span>Certified Importers • Bulk Wholesale Pricing</span>
-            </div>
           </div>
         </div>
       </div>
@@ -43,17 +40,12 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link href="/">
-              <div className="flex items-center space-x-3" data-testid="link-logo">
-                <img 
-                  src={usasLogo} 
-                  alt="United States Air Supply Logo"
-                  className="h-12 w-auto"
-                />
-                <div>
-                  <h1 className="text-xl font-bold text-foreground">United States Air Supply</h1>
-                  <p className="text-sm text-muted-foreground">Bulk A/C Equipment Importer</p>
-                </div>
-              </div>
+              <img 
+                src={usasLogo} 
+                alt="United States Air Supply Logo"
+                className="h-20 w-auto"
+                data-testid="link-logo"
+              />
             </Link>
           </div>
 

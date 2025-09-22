@@ -2,6 +2,8 @@ import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Shield, Clock, Award } from "lucide-react";
 import heroImage from "@assets/generated_images/Industrial_HVAC_warehouse_inventory_d0a55365.png";
+import usasLogo from "@assets/USAS logo transparent final (1)_1758501953578.png";
+import semiTruck from "@assets/USAS semi truck_1758501953577.png";
 
 export default function HeroSection() {
   const features = [
@@ -22,6 +24,14 @@ export default function HeroSection() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
+            <div className="flex justify-center lg:justify-start mb-8">
+              <img 
+                src={usasLogo} 
+                alt="United States Air Supply Logo"
+                className="h-32 w-auto"
+                data-testid="img-hero-logo"
+              />
+            </div>
             <h1 className="text-4xl lg:text-6xl font-bold text-foreground mb-6">
               Bulk A/C Units for Your Business
             </h1>
@@ -56,14 +66,25 @@ export default function HeroSection() {
           </div>
 
           <div className="hidden lg:block">
-            <div className="relative">
-              <img 
-                src={heroImage} 
-                alt="Industrial warehouse with bulk inventory of commercial AC units"
-                className="w-full h-auto rounded-lg shadow-xl"
-                data-testid="img-hero"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
+            <div className="space-y-6">
+              <div className="relative">
+                <img 
+                  src={semiTruck} 
+                  alt="USAS delivery truck with commercial AC equipment"
+                  className="w-full h-auto rounded-lg shadow-xl"
+                  data-testid="img-hero-truck"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
+              </div>
+              <div className="relative">
+                <img 
+                  src={heroImage} 
+                  alt="Industrial warehouse with bulk inventory of commercial AC units"
+                  className="w-full h-auto rounded-lg shadow-xl"
+                  data-testid="img-hero-warehouse"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
+              </div>
             </div>
           </div>
         </div>
