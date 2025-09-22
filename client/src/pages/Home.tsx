@@ -117,11 +117,12 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="relative">
+              <div className="relative -mt-8">
                 <img 
                   src={commercialImage} 
                   alt="USAS warehouse facility with organized inventory and company branding"
                   className="w-full h-auto rounded-lg shadow-xl"
+                  style={{ transform: 'scale(1.5)', transformOrigin: 'center top' }}
                   data-testid="img-commercial-team"
                 />
               </div>
