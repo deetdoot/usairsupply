@@ -232,6 +232,46 @@ export class MemStorage implements IStorage {
         description: "New Full DC Inverter VRF system with advanced power management and refrigerant cooling for outdoor temperatures up to 55°C.",
         imageUrl: "/assets/generated_images/Bestcold_VRF_outdoor_unit_56a2a972.png",
         inStock: "in_stock"
+      },
+      // New Bestcold Air Handler products from bestcoldusa.com
+      {
+        name: "Bestcold Air Handler Side Discharge Light Commercial Air Conditioner R32 S1",
+        category: "Air Handlers",
+        brand: "Bestcold",
+        model: "R32-S1",
+        price: "3499.99",
+        btu: 48000,
+        energyRating: "18 SEER2",
+        features: ["Side discharge design", "R32 refrigerant", "Light commercial grade", "Energy efficient operation", "Compact installation"],
+        description: "Professional-grade side discharge air handler designed for light commercial applications with R32 eco-friendly refrigerant.",
+        imageUrl: "/assets/bestcold_products/bestcold_r32_s1_main.jpg",
+        inStock: "in_stock"
+      },
+      {
+        name: "Bestcold Air Handler Top Discharge Light Commercial Air Conditioner R32 Z1",
+        category: "Air Handlers", 
+        brand: "Bestcold",
+        model: "R32-Z1",
+        price: "3699.99",
+        btu: 54000,
+        energyRating: "18 SEER2",
+        features: ["Top discharge design", "R32 refrigerant", "Light commercial grade", "Optimized airflow", "Easy maintenance access"],
+        description: "High-performance top discharge air handler ideal for light commercial spaces with superior airflow distribution.",
+        imageUrl: "/assets/bestcold_products/bestcold_r32_z1_main.jpg",
+        inStock: "in_stock"
+      },
+      {
+        name: "Bestcold Air Handler Top Discharge Light Commercial Air Conditioner R454B G1",
+        category: "Air Handlers",
+        brand: "Bestcold", 
+        model: "R454B-G1",
+        price: "3899.99",
+        btu: 60000,
+        energyRating: "19 SEER2",
+        features: ["Top discharge design", "R454B low-GWP refrigerant", "Commercial grade", "Advanced inverter technology", "Ultra-low noise operation"],
+        description: "Next-generation air handler with R454B low global warming potential refrigerant for environmentally conscious installations.",
+        imageUrl: "/assets/bestcold_products/bestcold_r454b_g1_main.jpg",
+        inStock: "in_stock"
       }
     ];
 
