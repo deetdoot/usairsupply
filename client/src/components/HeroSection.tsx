@@ -1,9 +1,9 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Shield, Clock, Award } from "lucide-react";
-import heroImage from "@assets/generated_images/Industrial_HVAC_warehouse_inventory_d0a55365.png";
+import heroImage from "@assets/USAS warehouse_1758503174620.png";
 import usasLogo from "@assets/USAS logo transparent final (1)_1758501953578.png";
-import semiTruck from "@assets/USAS semi truck_1758501953577.png";
+import semiTruck from "@assets/semi truck usas final_1758502681489.png";
 
 export default function HeroSection() {
   const features = [
@@ -79,7 +79,7 @@ export default function HeroSection() {
               <div className="relative">
                 <img 
                   src={heroImage} 
-                  alt="Industrial warehouse with bulk inventory of commercial AC units"
+                  alt="USAS warehouse with organized inventory and company branding"
                   className="w-full h-auto rounded-lg shadow-xl"
                   data-testid="img-hero-warehouse"
                 />
