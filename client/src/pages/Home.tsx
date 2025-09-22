@@ -15,7 +15,7 @@ import {
   ArrowRight,
   Star
 } from "lucide-react";
-import commercialImage from "@assets/USAS warehouse_1758504725595.png";
+import warehouseImage from "@assets/USAS warehouse_1758503174620.png";
 
 export default function Home() {
   const stats = [
@@ -49,6 +49,16 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      
+      {/* Warehouse Image at Top */}
+      <div className="w-full">
+        <img 
+          src={warehouseImage} 
+          alt="USAS warehouse with organized inventory and company branding"
+          className="w-full h-auto"
+          data-testid="img-top-warehouse"
+        />
+      </div>
       
       <main>
         <HeroSection />
@@ -117,14 +127,8 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="relative -mt-8">
-                <img 
-                  src={commercialImage} 
-                  alt="USAS warehouse facility with organized inventory and company branding"
-                  className="w-full h-auto rounded-lg shadow-xl"
-                  style={{ transform: 'scale(1.5)', transformOrigin: 'center top' }}
-                  data-testid="img-commercial-team"
-                />
+              <div>
+                {/* Warehouse image removed - now at top of page */}
               </div>
             </div>
           </div>
