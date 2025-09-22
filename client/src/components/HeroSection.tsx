@@ -18,7 +18,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-r from-primary/60 to-transparent"></div>
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
-        style={{ backgroundImage: `url(${heroImage})` }}
+        style={{ backgroundImage: `url(${semiTruck})` }}
       ></div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -66,25 +66,14 @@ export default function HeroSection() {
           </div>
 
           <div className="hidden lg:block">
-            <div className="space-y-6">
-              <div className="relative">
-                <img 
-                  src={semiTruck} 
-                  alt="USAS delivery truck with commercial AC equipment"
-                  className="w-1/2 h-auto rounded-lg shadow-xl mx-auto"
-                  data-testid="img-hero-truck"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
-              </div>
-              <div className="relative">
-                <img 
-                  src={heroImage} 
-                  alt="USAS warehouse with organized inventory and company branding"
-                  className="w-full h-auto rounded-lg shadow-xl"
-                  data-testid="img-hero-warehouse"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
-              </div>
+            <div className="relative">
+              <img 
+                src={heroImage} 
+                alt="USAS warehouse with organized inventory and company branding"
+                className="w-full h-auto rounded-lg shadow-xl"
+                data-testid="img-hero-warehouse"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
             </div>
           </div>
         </div>
